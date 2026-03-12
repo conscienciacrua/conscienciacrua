@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit Mente em Ordem — Consciência Crua</title>
+<meta name="description" content="O sistema para domar o caos mental e viver com mais foco, energia e dinheiro. Para homens 30–50 anos.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0908;
+  --red: #C1121F;
+  --red-soft: #e63946;
+  --gold: #B8860B;
+  --gold-light: #D4A017;
+  --white: #FFFFFF;
+  --cream: #FAF7F2;
+  --warm-gray: #8B7355;
+  --muted: rgba(255,255,255,0.45);
+  --border: rgba(255,255,255,0.07);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(10,9,8,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.nav-cta {
+  background: var(--red);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 24px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--red-soft); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--red);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(56px, 9vw, 110px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -3px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.hero-title .acc { color: var(--red); font-style: italic; }
+.hero-title .dim { color: rgba(255,255,255,0.25); }
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-sub strong { color: white; font-weight: 600; }
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--red);
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 18px 40px;
+  letter-spacing: 0.3px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(193,18,31,0.4); }
+.btn-primary:hover::after { background: rgba(255,255,255,0.06); }
+
+.btn-arrow { font-size: 18px; transition: transform 0.2s; }
+.btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+.hero-price-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--warm-gray);
+  letter-spacing: 1px;
+}
+
+.hero-price-note span { color: white; font-weight: 500; }
+
+/* Hero background element */
+.hero-bg-text {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 380px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.018);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -10px;
+}
+
+/* ── SECTION BASE ── */
+section { position: relative; z-index: 1; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.section-pad { padding: 100px 0; }
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── PROBLEMA ── */
+.problema { background: #0d0b09; }
+
+.problema-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.problema-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.problema-label::before { content:''; display:block; width:28px; height:1px; background:var(--red); }
+
+.problema-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+}
+.problema-title em { color: var(--red); font-style: italic; }
+
+.problema-body {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.problema-body strong { color: white; font-weight: 500; }
+
+.pain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.pain-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border-left: 3px solid var(--red);
+}
+
+.pain-icon { color: var(--red); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.pain-text { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.pain-text strong { color: white; }
+
+/* ── SOLUÇÃO / PRODUTO ── */
+.produto-header { text-align: center; margin-bottom: 72px; }
+
+.produto-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.produto-label::before,
+.produto-label::after { content:''; display:block; width:28px; height:1px; background:var(--gold); }
+
+.produto-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+.produto-title em { color: var(--red); font-style: italic; }
+
+.produto-subtitle {
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Modules grid */
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.module-card {
+  background: #111;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.module-card:hover { background: #161412; }
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.module-card:hover::before { transform: scaleX(1); }
+
+.module-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  position: absolute;
+  top: 20px; right: 24px;
+}
+
+.module-icon {
+  width: 44px; height: 44px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.module-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+
+.module-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.module-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+}
+
+.module-items {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.module-item {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.module-item::before { content: '→'; color: var(--red); flex-shrink: 0; }
+
+/* Bonus row */
+.bonus-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.bonus-card {
+  background: #0d0b09;
+  padding: 32px 36px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+.bonus-card:hover { border-color: rgba(193,18,31,0.3); }
+
+.bonus-icon-wrap {
+  width: 40px; height: 40px;
+  background: rgba(193,18,31,0.1);
+  border: 1px solid rgba(193,18,31,0.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.bonus-body {}
+.bonus-tag { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.bonus-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.bonus-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+/* ── QUOTE ── */
+.quote-section {
+  background: var(--red);
+  padding: 80px 48px;
+  text-align: center;
+}
+
+.big-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3.5vw, 38px);
+  font-style: italic;
+  line-height: 1.45;
+  color: white;
+  max-width: 800px;
+  margin: 0 auto 16px;
+  letter-spacing: -0.5px;
+}
+
+.quote-author {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ── PARA QUEM É ── */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.avatar-card {
+  background: #111;
+  padding: 28px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border: 1px solid var(--border);
+}
+
+.avatar-check {
+  width: 24px; height: 24px;
+  background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.avatar-text { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+.avatar-text strong { color: white; display: block; margin-bottom: 3px; font-size: 15px; }
+
+/* ── PRICING ── */
+.pricing-section { background: #0d0b09; }
+
+.pricing-box {
+  max-width: 640px;
+  margin: 0 auto;
+  background: #111;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--red);
+}
+
+.pricing-top {
+  padding: 48px 48px 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 16px;
+}
+
+.pricing-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.pricing-name em { color: var(--red); font-style: italic; }
+
+.pricing-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.pricing-amount {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.pricing-currency {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  color: var(--warm-gray);
+  margin-bottom: 12px;
+}
+
+.pricing-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -3px;
+  color: white;
+}
+
+.pricing-note {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 32px;
+}
+
+.pricing-cta {
+  display: block;
+  background: var(--red);
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 20px;
+  text-align: center;
+  letter-spacing: 0.3px;
+  transition: all 0.25s;
+}
+.pricing-cta:hover { background: var(--red-soft); transform: translateY(-1px); }
+
+.pricing-bottom {
+  padding: 28px 48px;
+}
+
+.pricing-includes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pi-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+}
+
+.pi-check {
+  color: var(--red);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.pricing-guarantee {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.guarantee-icon { font-size: 28px; flex-shrink: 0; }
+.guarantee-text { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+.guarantee-text strong { color: rgba(255,255,255,0.7); display: block; margin-bottom: 3px; }
+
+/* Order bump */
+.order-bump {
+  max-width: 640px;
+  margin: 16px auto 0;
+  background: rgba(184,134,11,0.06);
+  border: 1px solid rgba(184,134,11,0.2);
+  padding: 24px 32px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.ob-icon { font-size: 32px; flex-shrink: 0; }
+.ob-body { flex: 1; }
+.ob-tag { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.ob-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.ob-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+.ob-price { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:var(--gold); flex-shrink:0; }
+
+/* ── FAQ ── */
+.faq-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; margin: 0 auto; }
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+
+.faq-q {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.faq-num { color: var(--red); flex-shrink: 0; font-family:'DM Mono',monospace; font-size:13px; }
+.faq-a { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; padding-left: 32px; }
+
+/* ── FOOTER CTA ── */
+.footer-cta {
+  background: #0d0b09;
+  padding: 100px 48px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  margin-bottom: 32px;
+}
+.footer-cta-title em { color: var(--red); font-style: italic; }
+
+.footer-cta-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+  max-width: 440px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+.footer-brand {
+  margin-top: 64px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+/* Section headers */
+.sec-header {
+  margin-bottom: 64px;
+}
+
+.sec-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sec-label::before { content:''; display:block; width:28px; height:1px; background:var(--red); }
+
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.sec-title em { color: var(--red); font-style: italic; }
+
+.sec-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  max-width: 520px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .container { padding: 0 24px; }
+  .section-pad { padding: 64px 0; }
+  .hero-bg-text { display: none; }
+  .problema-inner { grid-template-columns: 1fr; gap: 40px; }
+  .modules-grid { grid-template-columns: 1fr; }
+  .bonus-row { grid-template-columns: 1fr; }
+  .avatar-grid { grid-template-columns: 1fr; }
+  .pricing-top { padding: 32px 24px 24px; }
+  .pricing-bottom { padding: 20px 24px; }
+  .order-bump { flex-direction: column; }
+  .quote-section { padding: 60px 24px; }
+  .footer-cta { padding: 64px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Consciência Crua</div>
+  <a href="https://pay.hotmart.com/S103712102U" class="nav-cta">Quero o Kit — R$47</a>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative;overflow:hidden;">
+  <div class="hero">
+    <div class="hero-eyebrow">Para homens 30–50 anos · Da Caos à Cura</div>
+    <h1 class="hero-title">
+      KIT<br>
+      <span class="acc">MENTE</span><br>
+      <span>EM ORDEM</span>
+    </h1>
+    <p class="hero-sub">
+      Você não é desorganizado. <strong>Seu sistema é que falha.</strong> Este kit entrega as rotinas, o método e as ferramentas de IA que funcionam especialmente nos dias em que você não tem vontade de nada.
+    </p>
+    <div class="hero-actions">
+      <a href="https://pay.hotmart.com/S103712102U" class="btn-primary">
+        Quero o Kit Agora
+        <span class="btn-arrow">→</span>
+      </a>
+      <div class="hero-price-note">Acesso imediato · <span>R$47</span> · Pagamento único</div>
+    </div>
+  </div>
+  <div class="hero-bg-text">KIT</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="container section-pad">
+    <div class="problema-inner">
+      <div>
+        <div class="problema-label">O problema</div>
+        <h2 class="problema-title">
+          Você já tentou<br>de tudo. E parou<br><em>em 3 dias.</em>
+        </h2>
+        <p class="problema-body">
+          Planilha, app de produtividade, caderno bonito, curso de gestão de tempo. Funcionou por uma semana. Depois voltou ao caos.
+        </p>
+        <p class="problema-body">
+          Não é fraqueza. É um sistema que foi feito para <strong>outro tipo de mente</strong> — não para a sua.
+        </p>
+      </div>
+      <div class="pain-list">
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <div class="pain-text"><strong>Começa vários projetos, termina poucos.</strong> A energia explode no início e some quando o trabalho fica repetitivo.</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <div class="pain-text"><strong>Excelente em crise, péssimo em rotina.</strong> Você performa sob pressão mas trava no planejamento tranquilo.</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <div class="pain-text"><strong>Dorme 8 horas e acorda destruído.</strong> O problema não é o sono — é o cache mental que não esvazia.</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <div class="pain-text"><strong>Presente no corpo, ausente na cabeça.</strong> Está no jantar mas pensando na reunião de amanhã.</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">✗</div>
+          <div class="pain-text"><strong>Dia cheio, noite vazia.</strong> Ocupado o tempo todo, mas à noite não sabe o que fez de importante.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PRODUTO -->
+<section>
+  <div class="container section-pad">
+    <div class="produto-header">
+      <div class="produto-label">A solução</div>
+      <h2 class="produto-title">Kit <em>Mente</em> em Ordem</h2>
+      <p class="produto-subtitle">Um sistema prático construído para mentes que resistem a sistemas.</p>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-num">1</div>
+        <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="#C1121F" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="module-tag">Parte 01</div>
+        <div class="module-title">3 Rotinas para Cérebro Caótico</div>
+        <div class="module-desc">Sem força de vontade. Ancoradas em momentos que já existem na sua vida.</div>
+        <div class="module-items">
+          <div class="module-item">Rotina Matinal de 7 minutos</div>
+          <div class="module-item">Ritual de transição trabalho→casa</div>
+          <div class="module-item">Protocolo noturno de 5 minutos</div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">2</div>
+        <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="#C1121F" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div class="module-tag">Parte 02</div>
+        <div class="module-title">Método Foco em 3 Passos</div>
+        <div class="module-desc">Clareza quando tudo parece urgente ao mesmo tempo.</div>
+        <div class="module-items">
+          <div class="module-item">Separar urgente do importante</div>
+          <div class="module-item">Definir sua MIT diária</div>
+          <div class="module-item">Começar sem mais 10 min de planejamento</div>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">3</div>
+        <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="#C1121F" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="module-tag">Parte 03</div>
+        <div class="module-title">10 Prompts de IA Essenciais</div>
+        <div class="module-desc">Sua semana organizada em 20 minutos. Cole no ChatGPT gratuito.</div>
+        <div class="module-items">
+          <div class="module-item">Organizar a semana inteira</div>
+          <div class="module-item">Destruir procrastinação</div>
+          <div class="module-item">Análise financeira + encerrar o dia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bonus-row" style="margin-top:2px;">
+      <div class="bonus-card">
+        <div class="bonus-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C1121F" stroke-width="1.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="bonus-body">
+          <div class="bonus-tag">Bônus</div>
+          <div class="bonus-title">Energia para o Homem Real</div>
+          <div class="bonus-desc">O que ninguém fala sobre cansaço crônico depois dos 35 — e como resolver sem suplemento.</div>
+        </div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C1121F" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="bonus-body">
+          <div class="bonus-tag">Bônus</div>
+          <div class="bonus-title">Finanças com Mente Caótica</div>
+          <div class="bonus-desc">O sistema dos 3 baldes — controle financeiro sem planilha complexa.</div>
+        </div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C1121F" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <div class="bonus-body">
+          <div class="bonus-tag">Bônus</div>
+          <div class="bonus-title">Presença Real em Casa</div>
+          <div class="bonus-desc">Para quem está fisicamente presente mas mentalmente no trabalho.</div>
+        </div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C1121F" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="bonus-body">
+          <div class="bonus-tag">Bônus</div>
+          <div class="bonus-title">Template Semanal Pronto</div>
+          <div class="bonus-desc">Planejamento de semana em 5 minutos toda segunda-feira.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <p class="big-quote">"Você não é desorganizado. Seu sistema é que falha. E sistema tem conserto."</p>
+  <div class="quote-author">@conscienciacrua · Da Caos à Cura</div>
+</div>
+
+<!-- PARA QUEM É -->
+<section>
+  <div class="container section-pad">
+    <div class="sec-header">
+      <div class="sec-label">Para quem é</div>
+      <h2 class="sec-title">Este kit é para você<br>se você <em>se identificar</em></h2>
+      <p class="sec-sub">Não precisa ter todos os itens. Se metade fizer sentido, o sistema foi feito para você.</p>
+    </div>
+    <div class="avatar-grid">
+      <div class="avatar-card">
+        <div class="avatar-check">✓</div>
+        <div class="avatar-text"><strong>Homem entre 30 e 50 anos</strong>Com responsabilidades reais — família, trabalho, conta a pagar — e pouco tempo para enrolação.</div>
+      </div>
+      <div class="avatar-card">
+        <div class="avatar-check">✓</div>
+        <div class="avatar-text"><strong>Já tentou vários métodos</strong>Planilha, app, caderno, curso. Funcionou por uma semana. Você não é o problema — o método é.</div>
+      </div>
+      <div class="avatar-card">
+        <div class="avatar-check">✓</div>
+        <div class="avatar-text"><strong>Mente que não para</strong>Dez ideias ao mesmo tempo, dificuldade de iniciar o que importa, energia que oscila sem padrão.</div>
+      </div>
+      <div class="avatar-card">
+        <div class="avatar-check">✓</div>
+        <div class="avatar-text"><strong>Quer resultado rápido e prático</strong>Sem teoria, sem papo motivacional. Quer algo que funcione amanhã cedo, nos 7 primeiros minutos do dia.</div>
+      </div>
+      <div class="avatar-card">
+        <div class="avatar-check">✓</div>
+        <div class="avatar-text"><strong>Cansado de se desculpar</strong>Pelo caos, pela inconsistência, pela falta de presença em casa. Está pronto para um sistema diferente.</div>
+      </div>
+      <div class="avatar-card">
+        <div class="avatar-check">✓</div>
+        <div class="avatar-text"><strong>Curioso sobre IA mas sem tempo</strong>Quer usar tecnologia para viver melhor — sem precisar aprender programação ou gastar horas testando.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="container section-pad">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="sec-label" style="justify-content:center;"><span style="width:28px;height:1px;background:var(--red);display:block;"></span>Investimento<span style="width:28px;height:1px;background:var(--red);display:block;"></span></div>
+      <h2 class="sec-title" style="text-align:center;">Acesso <em>imediato</em> ao kit completo</h2>
+    </div>
+
+    <div class="pricing-box">
+      <div class="pricing-top">
+        <div class="pricing-label">Kit Mente em Ordem · Acesso vitalício</div>
+        <div class="pricing-name">Kit <em>Mente</em> em Ordem</div>
+        <p class="pricing-desc">34 páginas. 3 rotinas. 1 método. 10 prompts de IA. 4 bônus. Tudo que você precisa para domar o caos mental — sem força de vontade.</p>
+        <div class="pricing-amount">
+          <div class="pricing-currency">R$</div>
+          <div class="pricing-value">47</div>
+        </div>
+        <p class="pricing-note">Pagamento único · Acesso imediato · Sem mensalidade</p>
+        <a href="https://pay.hotmart.com/S103712102U" class="pricing-cta">
+          Quero o Kit Agora — R$47 →
+        </a>
+      </div>
+      <div class="pricing-bottom">
+        <div class="pricing-includes">
+          <div class="pi-item"><span class="pi-check">✓</span> 3 Rotinas para Cérebro Caótico (34 páginas)</div>
+          <div class="pi-item"><span class="pi-check">✓</span> Método Foco em 3 Passos</div>
+          <div class="pi-item"><span class="pi-check">✓</span> 10 Prompts de IA prontos para usar</div>
+          <div class="pi-item"><span class="pi-check">✓</span> Bônus: Energia para o Homem Real</div>
+          <div class="pi-item"><span class="pi-check">✓</span> Bônus: Finanças com Mente Caótica</div>
+          <div class="pi-item"><span class="pi-check">✓</span> Bônus: Template Semanal + Revisão</div>
+          <div class="pi-item"><span class="pi-check">✓</span> Acesso vitalício — baixe e use para sempre</div>
+        </div>
+        <div class="pricing-guarantee">
+          <div class="guarantee-icon">🛡️</div>
+          <div class="guarantee-text">
+            <strong>7 dias de garantia</strong>
+            Se você abrir, aplicar e não sentir diferença em 7 dias, devolvemos 100% do valor. Sem perguntas.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-bump">
+      <div class="ob-icon">⚡</div>
+      <div class="ob-body">
+        <div class="ob-tag">Adicione no checkout · Order Bump</div>
+        <div class="ob-title">50 Prompts de IA para Mente Caótica</div>
+        <div class="ob-desc">5 categorias completas: Foco, Saúde Mental, Finanças, Relacionamentos e Energia. Disponível como complemento na página de pagamento.</div>
+      </div>
+      <div class="ob-price">+R$27</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section>
+  <div class="container section-pad">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div class="sec-label" style="justify-content:center;"><span style="width:28px;height:1px;background:var(--red);display:block;"></span>Dúvidas<span style="width:28px;height:1px;background:var(--red);display:block;"></span></div>
+      <h2 class="sec-title" style="text-align:center;">Perguntas <em>frequentes</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-num">01</span>Preciso saber usar IA para aproveitar o kit?</div>
+        <div class="faq-a">Não. Os prompts funcionam no ChatGPT gratuito — você só copia, cola e preenche as partes em [colchetes] com sua situação. Leva menos de 2 minutos cada.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-num">02</span>Quanto tempo por dia vou precisar dedicar?</div>
+        <div class="faq-a">A rotina matinal leva 7 minutos. A de transição, 5 minutos. A noturna, 5 minutos. O total diário é menos de 20 minutos — e ainda tem uma versão de 2 minutos para os dias ruins.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-num">03</span>Funciona para quem tem TDAH?</div>
+        <div class="faq-a">Foi desenhado especificamente para esse perfil. Rotinas curtas, âncoras comportamentais no lugar de horários rígidos, versão mínima para dias difíceis, e um sistema que não depende de motivação para funcionar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-num">04</span>Como recebo o produto após a compra?</div>
+        <div class="faq-a">Imediatamente após o pagamento, você recebe um e-mail da Hotmart com o link de download. O PDF fica disponível para baixar quantas vezes quiser, para sempre.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-num">05</span>E se não funcionar para mim?</div>
+        <div class="faq-a">7 dias de garantia incondicional. Se você abrir, tentar e não sentir diferença nenhuma, basta solicitar reembolso pela Hotmart e devolvemos 100% do valor. Sem questionamento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <h2 class="footer-cta-title">DA CAOS<br>À <em>CURA.</em></h2>
+  <p class="footer-cta-sub">Amanhã cedo você pode abrir com um sistema diferente. Ou pode continuar do mesmo jeito.</p>
+  <a href="https://pay.hotmart.com/S103712102U" class="btn-primary" style="font-size:16px;padding:20px 48px;">
+    Quero o Kit Agora — R$47
+    <span class="btn-arrow">→</span>
+  </a>
+  <div class="footer-brand" style="margin-top:64px;">
+    @conscienciacrua · linktr.ee/conscienciacrua · Da Caos à Cura
+  </div>
+</div>
+
+</body>
+</html>
